@@ -1,0 +1,31 @@
+<table>
+    <thead>
+        <tr>
+            <th>index</th>
+            <th>Task Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>operations</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each tasks}}
+        <tr>
+            <td>{{@index}}</td>
+            <td>{{this.title}}</td>
+            <td>{{this.description}}</td>
+            <td>{{this.done}}</td>
+            <td>{{this.done}}</td>
+            <td>
+                {{#if this.done}}
+                    <button><a href="/task/toggleDone/{{this._id}}">Undone</a></button>
+                {{else}}
+                    <button><a href="/task/toggleDone/{{this._id}}">Done</a></button>
+                {{/if}}
+                <button><a href="/task/edit/{{this._id}}">Edit</a></button>
+                <button><a href="/task/delete/{{this._id}}">Delete</a></button>
+            </td>
+        </tr>
+        {{/each}}
+</table>
