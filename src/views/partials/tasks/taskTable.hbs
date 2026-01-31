@@ -1,31 +1,44 @@
-<table>
-    <thead>
+{{#if tasks.length}}
+ <div class="p-4 mt-5 bg-dark rounded-4">
+<table class="table rounded-3 text-white">
+    <thead class="table-light text-center">
         <tr>
-            <th>index</th>
-            <th>Task Name</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th>operations</th>
+            <th scope="col">index</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
 
-    <tbody>
+    <tbody class="table-dark ">
         {{#each tasks}}
         <tr>
             <td>{{@index}}</td>
             <td>{{this.title}}</td>
             <td>{{this.description}}</td>
-            <td>{{this.done}}</td>
-            <td>{{this.done}}</td>
+            {{#if this.done}}
+            <td>✅</td>
+            {{else}}
+            <td>❌</td>
+            {{/if}}
+
             <td>
-                {{#if this.done}}
-                    <button><a href="/task/toggleDone/{{this._id}}">Undone</a></button>
+                <button class="btn-edit rounded-3"><a class="text-decoration-none text-white " href="/task/edit/{{this._id}}">Edit</a></button>
+                <button class="btn-delete  rounded-3"><a class="text-decoration-none text-white " href="/task/delete/{{this._id}}">Delete</a></button>
+                      {{#if this.done}}
+                    <button class="btn-undone rounded-3"><a class="text-decoration-none text-white  " href="/task/toggleDone/{{this._id}}">Undone</a></button>
                 {{else}}
-                    <button><a href="/task/toggleDone/{{this._id}}">Done</a></button>
+                    <button class="btn-done px-3 rounded-3"><a class="text-decoration-none text-white  " href="/task/toggleDone/{{this._id}}">Done</a></button>
                 {{/if}}
-                <button><a href="/task/edit/{{this._id}}">Edit</a></button>
-                <button><a href="/task/delete/{{this._id}}">Delete</a></button>
             </td>
         </tr>
         {{/each}}
 </table>
+</div>
+{{else}}
+<div>
+    <h3 class="mt-5 text-center text-white">No tasks available</h3>
+    <span class="d-block text-center text-white">Please add a task to get started.</span>
+</div>
+{{/if}}

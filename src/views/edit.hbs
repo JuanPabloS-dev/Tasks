@@ -1,15 +1,33 @@
-<form action="/task/edit/{{task._id}}" method="post">  
-    <label for="title">Write a title
-    <input type="text" name="title" placeholder="title" id="title" value="{{task.title}}" />
+<form
+  action="/task/edit/{{task._id}}"
+  method="post"
+  class="container d-flex flex-column gap-3 p-4 bg-dark rounded-4
+         col-12 col-md-6 col-lg-5 mx-auto"
+>
+  <h2 class="text-center">Add Task</h2>
+
+  <label class="d-flex flex-column gap-1" for="title">
+    Write a title
+    <input
+      type="text"
+      name="title"
+      placeholder="title"
+      id="title"
+      class="form-control"
+    />
   </label>
-  <label for="description">
+
+  <label class="d-flex flex-column gap-1" for="description">
     Write a description
     <textarea
+      class="form-control textarea-small"
       name="description"
       placeholder="description"
       id="description"
-    >{{task.description}}</textarea>
-    
+    ></textarea>
   </label>
-  <button>update</button>
+
+  <button class="btn-send rounded-3 p-2 px-3 align-self-end">
+    Edit
+  </button>
 </form>

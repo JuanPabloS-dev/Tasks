@@ -4,6 +4,7 @@ class TaskController {
   constructor() {
     this.taskService = new TaskService();
     this.getAllTasks = this.getAllTasks.bind(this);
+    this.addTask = this.addTask.bind(this);
     this.getTaskById = this.getTaskById.bind(this);
     this.editTask = this.editTask.bind(this);
     this.toggleTaskDone = this.toggleTaskDone.bind(this);
@@ -27,7 +28,15 @@ class TaskController {
       next(error);
     }
   }
-
+  async addTask(req, res, next) {
+    const { title, description } = req.body;
+    try {
+      await this.taskService.addTask(title, description);
+        res.redirect("/");
+    } catch (error) {
+      next(error);
+    }
+}
   async editTask(req, res, next) {
     const { id } = req.params;
     const { title, description } = req.body;
