@@ -1,7 +1,7 @@
 import http from 'node:http'
-import env from "./config/env.js";
-import app from './app.js';
-import './config/database.js'
+import env from "./src/config/env.js";
+import app from './src/app.js';
+import './src/config/database.js'
 
 const server = http.createServer(app)
 
