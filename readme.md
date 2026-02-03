@@ -1,35 +1,72 @@
-# Integración de Handlebars y MongoDB en Express
+# 📝 Task Manager CRUD
 
-## Configuración de Handlebars en Express
-Se integró **Handlebars (hbs)** como motor de plantillas en una aplicación **Express**, configurándolo mediante `app.set` para definir el motor de vistas y el directorio correspondiente.  
-Además, se añadieron **middlewares** esenciales que permiten el correcto procesamiento de las solicitudes, como el parseo del cuerpo de las peticiones (`express.json` y `express.urlencoded`), garantizando que los datos enviados desde formularios o en formato JSON puedan ser utilizados dentro de la aplicación.
+Sistema de gestión de tareas (To-Do List) desarrollado con **Node.js**, **Express** y **MongoDB**. La aplicación permite realizar las operaciones básicas de creación, lectura, actualización y eliminación de tareas, siguiendo una arquitectura de capas (Controller, Service, Domain).
 
----
-
-## Creación y uso de vistas con Handlebars
-Se crearon archivos **`.hbs`** para estructurar las vistas de la aplicación.  
-En estos archivos se utilizó la **sintaxis propia de Handlebars**, como `{{}}`, `{{#each}}` y variables de contexto, permitiendo renderizar datos dinámicos enviados desde los controladores y mostrar información proveniente del backend de forma clara y reutilizable.
+🚀 **Demo en vivo:** [https://tasks-x97j.onrender.com/](https://tasks-x97j.onrender.com/)
 
 ---
 
-## Conexión a la base de datos MongoDB
-Se estableció la conexión con **MongoDB** utilizando **Mongoose**, asegurando que el servidor solo se inicie una vez la base de datos esté correctamente conectada.  
-Esto permite una comunicación estable entre la aplicación y la base de datos, evitando errores de operaciones antes de que la conexión esté lista.
+## 🛠️ Tecnologías utilizadas
+
+* **Backend:** Node.js con Express.
+* **Base de Datos:** MongoDB (vía Mongoose o Driver Nativo).
+* **Arquitectura:** Separación de responsabilidades (Routes -> Controllers -> Services -> Domain).
+* **Despliegue:** Render.
 
 ---
 
-## Definición del Schema y creación del Modelo
-Se creó un **Schema** de Mongoose para definir la estructura de los documentos, estableciendo las **reglas y tipos de datos** que debe cumplir cada registro.  
-A partir de este schema se exportó un **Modelo**, el cual actúa como la interfaz principal para interactuar con la base de datos, facilitando la creación, consulta y modificación de documentos.
+## 🏗️ Arquitectura del Proyecto
+
+El proyecto está organizado para separar la lógica de infraestructura de la lógica de negocio:
+
+* **Routes:** Define los puntos de entrada (endpoints).
+* **Controllers:** Maneja la comunicación HTTP (`req`, `res`) y delega al servicio.
+* **Services:** Orquesta la lógica de la aplicación y la comunicación con la base de datos.
+* **Domain (Models):** Define la estructura de la tarea y las reglas de negocio.
 
 ---
 
-## Operaciones CRUD desde los Routes
-Desde los **routes** de Express se implementaron distintas operaciones utilizando métodos HTTP como **GET** y **POST**.  
-Estas rutas permiten:
-- Obtener información almacenada en la base de datos.
-- Enviar nuevos datos para ser guardados.
-  
-De esta manera, se conectó el flujo completo entre vistas, lógica del servidor y persistencia de datos.
+## 🛣️ Endpoints de la API
+
+| Método | Ruta | Descripción |
+| --- | --- | --- |
+| **GET** | `/` | Obtiene todas las tareas. |
+| **POST** | `/task/add` | Crea una nueva tarea. |
+| **GET** | `/task/edit/:id` | Obtiene una tarea específica por ID para edición. |
+| **POST** | `/task/edit/:id` | Actualiza los datos de una tarea. |
+| **GET** | `/task/toggleDone/:id` | Cambia el estado de la tarea (Completada/Pendiente). |
+| **GET** | `/task/delete/:id` | Elimina una tarea del sistema. |
 
 ---
+
+## 🚀 Instalación y Uso
+
+1. **Clonar el repositorio:**
+```bash
+git clone https://github.com/tu-usuario/nombre-del-repo.git
+cd nombre-del-repo
+
+```
+
+
+2. **Instalar dependencias:**
+```bash
+npm install
+
+```
+
+
+3. **Configurar variables de entorno:**
+Crea un archivo `.env` en la raíz y añade tu cadena de conexión a MongoDB:
+```env
+MONGO_URI=tu_conexion_a_mongodb
+PORT=3000
+
+```
+
+
+4. **Arrancar la aplicación:**
+```bash
+npm start
+
+
